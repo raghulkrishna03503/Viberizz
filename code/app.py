@@ -11,6 +11,9 @@ CLIENT_SECRET = "56e542d83bc04bc58acbbb0e1a87ca15"
 client_credentials_manager = SpotifyClientCredentials(client_id=CLIENT_ID, client_secret=CLIENT_SECRET)
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
+music = pickle.load(open('model/df.pkl','rb'))
+similarity = pickle.load(open('model/similarity.pkl','rb'))
+
 def get_song_album_cover_url(song_name, artist_name):
     search_query = f"track:{song_name} artist:{artist_name}"
     results = sp.search(q=search_query, type="track")
@@ -45,8 +48,6 @@ if __name__ == '__main__':
     app.run()
 
 # st.header('Viberizz')
-# music = pickle.load(open('df.pkl','rb'))
-# similarity = pickle.load(open('similarity.pkl','rb'))
 
 # music_list = music['song'].values
 # selected_movie = st.selectbox(
